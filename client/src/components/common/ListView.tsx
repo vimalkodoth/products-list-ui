@@ -45,4 +45,10 @@ const ListView = ({ products, level = 0, path = '' }): JSX.Element => {
     );
 };
 
+ListView.defaultProps = {
+    products: [],
+    level: 0,
+    path: '',
+};
+
 export default ListView;

@@ -21,4 +21,10 @@ const CheckboxItem = ({
     );
 };
 
+CheckboxItem.defaultProps = {
+    onChange: () => {},
+    label: '',
+    isUnChecked: false,
+};
+
 export default CheckboxItem;
