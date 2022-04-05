@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxItem should render checkbox as selected 1`] = `
+Array [
+  <CheckboxItem
+    isUnChecked={false}
+    label="ProductText"
+    onChange={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            false,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+  />,
+]
+`;
+
+exports[`CheckboxItem should render checkbox component 1`] = `
+Array [
+  <CheckboxItem
+    label="ProductText"
+    onChange={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            false,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+  />,
+]
+`;

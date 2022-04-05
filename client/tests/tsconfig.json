@@ -1,0 +1,15 @@
+{
+    "extends": "../tsconfig",
+    "references": [
+        {
+            "name": "chat-app",
+            "path": ".."
+        }
+    ],
+    "compilerOptions": {
+        "isolatedModules": false,
+        "types": ["jest"],
+        "rootDir": ".."
+    },
+    "include": ["../*"]
+}

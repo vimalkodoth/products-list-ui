@@ -1,0 +1,116 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "title": "xxxx",
+            "category": "phones",
+            "brand": "apple",
+            "model": "iphone8",
+            "variant": "128gb"
+        },
+        {
+            "id": 2,
+            "title": "xxxx",
+            "category": "phones",
+            "brand": "apple",
+            "model": "iphone7",
+            "variant": "128gb"
+        },
+        {
+            "id": 3,
+            "title": "xxxx",
+            "category": "phones",
+            "brand": "apple",
+            "model": "iphone7",
+            "variant": "256gb"
+        },
+        {
+            "id": 4,
+            "title": "xxxx",
+            "category": "computers",
+            "brand": "apple",
+            "model": "mac book",
+            "variant": "256gb"
+        },
+        {
+            "id": 5,
+            "title": "xxxx",
+            "category": "computers",
+            "brand": "apple",
+            "model": "mac book",
+            "variant": "128gb"
+        },
+        {
+            "id": 6,
+            "title": "xxxx",
+            "category": "computers",
+            "brand": "PC",
+            "model": "lenovo",
+            "variant": "128gb"
+        },
+        {
+            "id": 7,
+            "title": "xxxx",
+            "category": "watches",
+            "brand": "apple",
+            "model": "series 6",
+            "variant": "gps"
+        },
+        {
+            "id": 8,
+            "title": "xxxx",
+            "category": "watches",
+            "brand": "apple",
+            "model": "series 7",
+            "variant": "cellular"
+        },
+        {
+            "id": 9,
+            "title": "xxxx",
+            "category": "watches",
+            "brand": "samsung",
+            "model": "classic",
+            "variant": "bluetooth"
+        },
+        {
+            "id": 10,
+            "title": "xxxx",
+            "category": "watches",
+            "brand": "samsung",
+            "model": "fit2",
+            "variant": "bluetooth"
+        },
+        {
+            "id": 11,
+            "title": "xxxx",
+            "category": "TVs",
+            "brand": "apple",
+            "model": "4K",
+            "variant": "32gb"
+        },
+        {
+            "id": 12,
+            "title": "xxxx",
+            "category": "TVs",
+            "brand": "apple",
+            "model": "HD",
+            "variant": "32gb"
+        },
+        {
+            "id": 13,
+            "title": "xxxx",
+            "category": "TVs",
+            "brand": "samsung",
+            "model": "HD",
+            "variant": "32gb"
+        },
+        {
+            "id": 14,
+            "title": "xxxx",
+            "category": "TVs",
+            "brand": "samsung",
+            "model": "4K",
+            "variant": "32gb"
+        }
+    ]
+}
