@@ -5,7 +5,7 @@ import useListView from '../../hooks/useListView';
 import CheckboxItem from './CheckboxItem';
 import { ListViewCSS, ListWrapperCSS } from './ListView.styles';
 
-const ListView = ({ products, level = 0, path = '' }): JSX.Element => {
+const ListView = ({ products = [], level = 0, path = '' }): JSX.Element => {
     const { isUnChecked, state, onCheckboxClicked } = useListView();
     const filterLevel = PRODUCT_LEVELS[level++];
     const segmentByType = groupWith(eqBy(prop(filterLevel)))(products);
