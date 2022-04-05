@@ -27,6 +27,7 @@ Array [
 exports[`CheckboxItem should render checkbox component 1`] = `
 Array [
   <CheckboxItem
+    isUnChecked={false}
     label="ProductText"
     onChange={
       [MockFunction] {
