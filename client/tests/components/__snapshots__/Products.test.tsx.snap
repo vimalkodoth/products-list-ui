@@ -57,6 +57,25 @@ Array [
 ]
 `;
 
+exports[`Products should render ListView with correct checkboxItem count 1`] = `
+Array [
+  <Provider
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <Products />
+  </Provider>,
+]
+`;
+
 exports[`Products should render products component 1`] = `
 Array [
   <Context.Provider

@@ -8,6 +8,9 @@ import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import ListViewContextProvider from '../../src/contexts/ListViewContext';
 import ListView from '../../src/components/common/ListView';
 
+import jsonSample from '../../sample.json';
+import CheckboxItem from '../../src/components/common/CheckboxItem';
+
 const middlewares = getDefaultMiddleware();
 const mockStore = createMockStore(middlewares);
 const store = mockStore({}); // define your initial state as needed
@@ -73,5 +76,26 @@ describe('Products', () => {
         expect(wrapper.find(ListViewContextProvider)).toBeTruthy();
         expect(wrapper.find('h2').text()).toBeDefined();
         expect(wrapper.find(ListView)).toBeTruthy();
+    });
+    it('should render ListView with correct checkboxItem count', async () => {
+        const { products } = jsonSample;
+        const PRODUCTS_COUNT = 37;
+        jest.spyOn(hooks, 'useGetProductsQuery').mockReturnValue({
+            data: products,
+            error: false,
+            isLoading: false,
+            isSuccess: true,
+        } as any);
+        const wrapper = mount(
+            <Provider store={store}>
+                <Products />
+            </Provider>
+        );
+        console.log(jsonSample);
+        expect(wrapper.getElements()).toMatchSnapshot();
+        expect(wrapper.find(ListViewContextProvider)).toBeTruthy();
+        expect(wrapper.find('h2').text()).toBeDefined();
+        expect(wrapper.find(ListView)).toBeTruthy();
+        expect(wrapper.find(CheckboxItem).length).toEqual(PRODUCTS_COUNT);
     });
 });
