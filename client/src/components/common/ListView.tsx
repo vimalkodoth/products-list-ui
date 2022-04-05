@@ -24,7 +24,7 @@ const ListView = ({ products = [], level = 0, path = '' }): JSX.Element => {
                     <div key={route} css={ListViewCSS}>
                         <CheckboxItem
                             onChange={(checked) =>
-                                onCheckboxClicked(checked, route, filter)
+                                onCheckboxClicked(checked, route, filterLevel)
                             }
                             label={productKey}
                             isUnChecked={isUnChecked(route, state)}
