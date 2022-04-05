@@ -91,7 +91,6 @@ describe('Products', () => {
                 <Products />
             </Provider>
         );
-        console.log(jsonSample);
         expect(wrapper.getElements()).toMatchSnapshot();
         expect(wrapper.find(ListViewContextProvider)).toBeTruthy();
         expect(wrapper.find('h2').text()).toBeDefined();
