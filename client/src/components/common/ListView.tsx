@@ -7,7 +7,7 @@ import CheckboxItem from './CheckboxItem';
 import { ListViewCSS, ListWrapperCSS } from './ListView.styles';
 
 const ListView = ({ products = [], level = 0, path = '' }): JSX.Element => {
-    const { trace, onCheckboxClicked, onLabelClicked, listViewMap } =
+    const { onCheckboxClicked, onLabelClicked, listViewMap, setListViewMap } =
         useListView();
     const filterLevel = PRODUCT_LEVELS[level++];
     const segmentByType = groupWith(eqBy(prop(filterLevel)))(products);
@@ -22,11 +22,7 @@ const ListView = ({ products = [], level = 0, path = '' }): JSX.Element => {
                 const filteredProducts = filter(
                     propEq(filterLevel, productKey)
                 )(products);
-                listViewMap.current[route] = listViewMap.current[route] || {};
-                listViewMap.current[route]['checked'] =
-                    listViewMap.current[route]['checked'] || false;
-                listViewMap.current[route]['opened'] =
-                    listViewMap.current[route]['opened'] || false;
+                setListViewMap(route);
                 return (
                     <div key={route} css={ListViewCSS}>
                         <CheckboxItem

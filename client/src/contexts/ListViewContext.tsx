@@ -69,11 +69,20 @@ export default function ListViewContextProvider({ children }) {
         }
     };
 
+    const setListViewMap = (route) => {
+        listViewMap.current[route] = listViewMap.current[route] || {};
+        listViewMap.current[route]['checked'] =
+            listViewMap.current[route]['checked'] || false;
+        listViewMap.current[route]['opened'] =
+            listViewMap.current[route]['opened'] || false;
+    };
+
     const values = {
         state,
         onCheckboxClicked,
         onLabelClicked,
         listViewMap: listViewMap,
+        setListViewMap,
     };
 
     return (
