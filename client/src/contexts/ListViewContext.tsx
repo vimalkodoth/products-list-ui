@@ -23,8 +23,12 @@ export default function ListViewContextProvider({ children }) {
         );
     };
 
-    const isAllKeysChecked = (keys, isChecked, listViewMap) => {
-        return keys.every((key) => listViewMap[key]['checked'] === isChecked);
+    const isAllKeysChecked = (keys, listViewMap) => {
+        return keys.every((key) => listViewMap[key]['checked']);
+    };
+
+    const isSomeKeysUnChecked = (keys, listViewMap) => {
+        return keys.some((key) => !listViewMap[key]['checked']);
     };
 
     const toggleAllParentCheckboxes = (listViewMap, trace, isChecked) => {
@@ -41,7 +45,9 @@ export default function ListViewContextProvider({ children }) {
         );
         if (
             keysStartsWithParent.length === 1 ||
-            isAllKeysChecked(keysStartsWithParent, isChecked, listViewMap)
+            (isChecked
+                ? isAllKeysChecked(keysStartsWithParent, listViewMap)
+                : isSomeKeysUnChecked(keysStartsWithParent, listViewMap))
         ) {
             listViewMap[parent]['checked'] = isChecked;
         }
