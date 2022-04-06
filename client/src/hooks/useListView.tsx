@@ -2,17 +2,13 @@ import { useContext } from 'react';
 import { ListViewContext } from '../contexts/ListViewContext';
 
 export default function useListView() {
-    const { state, onCheckboxClicked } = useContext(ListViewContext);
-    const isUnChecked = (route, state) => {
-        const { trace = '', checked } = state || {};
-        if (!trace || !route) return false;
-        if (trace.split('-').length >= route.split('-').length) return false;
-        return route.startsWith(trace);
-    };
-
+    const { state, onCheckboxClicked, onLabelClicked, listViewMap } =
+        useContext(ListViewContext);
+    const { trace } = state || {};
     return {
-        isUnChecked,
-        state,
+        trace,
         onCheckboxClicked,
+        onLabelClicked,
+        listViewMap,
     };
 }

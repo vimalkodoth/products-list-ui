@@ -2,11 +2,13 @@
 import { groupWith, eqBy, prop, filter, propEq } from 'ramda';
 import { PRODUCT_LEVELS } from '../../constants';
 import useListView from '../../hooks/useListView';
+import { isChild } from '../../utils/utils';
 import CheckboxItem from './CheckboxItem';
 import { ListViewCSS, ListWrapperCSS } from './ListView.styles';
 
 const ListView = ({ products = [], level = 0, path = '' }): JSX.Element => {
-    const { isUnChecked, state, onCheckboxClicked } = useListView();
+    const { trace, onCheckboxClicked, onLabelClicked, listViewMap } =
+        useListView();
     const filterLevel = PRODUCT_LEVELS[level++];
     const segmentByType = groupWith(eqBy(prop(filterLevel)))(products);
 
@@ -20,14 +22,29 @@ const ListView = ({ products = [], level = 0, path = '' }): JSX.Element => {
                 const filteredProducts = filter(
                     propEq(filterLevel, productKey)
                 )(products);
+                listViewMap.current[route] =
+                    listViewMap.current[route] || false;
                 return (
                     <div key={route} css={ListViewCSS}>
                         <CheckboxItem
-                            onChange={(checked) =>
-                                onCheckboxClicked(checked, route, filterLevel)
+                            onChange={(isChecked, isOpened) =>
+                                onCheckboxClicked(
+                                    isChecked,
+                                    isOpened,
+                                    route,
+                                    filterLevel
+                                )
+                            }
+                            onLabelClicked={(isChecked, isOpened) =>
+                                onLabelClicked(
+                                    isChecked,
+                                    isOpened,
+                                    route,
+                                    filterLevel
+                                )
                             }
                             label={productKey}
-                            isUnChecked={isUnChecked(route, state)}
+                            isChecked={listViewMap.current[route]}
                         />
                         <ul>
                             {

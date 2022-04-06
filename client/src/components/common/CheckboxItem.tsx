@@ -4,19 +4,26 @@ import { itemCSS } from './CheckboxItem.styles';
 
 const CheckboxItem = ({
     onChange,
+    onLabelClicked,
     label,
-    isUnChecked = false,
+    isChecked = false,
 }): JSX.Element => {
-    const { handleOnChange, checked } = useCheckboxItem(onChange, isUnChecked);
+    const { handleOnToggle, handleOnChange, isItemChecked, isOpened } =
+        useCheckboxItem(onChange, onLabelClicked, isChecked);
     return (
-        <div css={itemCSS} className={`${checked ? 'checked' : ''}`}>
+        <div
+            css={itemCSS}
+            className={`${isItemChecked ? 'checked' : ''} ${
+                isOpened ? 'opened' : ''
+            }`}
+        >
             <input
                 type="checkbox"
                 id={label}
-                checked={checked}
+                checked={isItemChecked}
                 onChange={handleOnChange}
             />
-            <label htmlFor={label}>{label}</label>
+            <label onClick={handleOnToggle}>{label}</label>
         </div>
     );
 };
@@ -24,7 +31,7 @@ const CheckboxItem = ({
 CheckboxItem.defaultProps = {
     onChange: () => {},
     label: '',
-    isUnChecked: false,
+    isChild: false,
 };
 
 export default CheckboxItem;

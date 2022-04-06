@@ -12,7 +12,7 @@ export const ListViewCSS = css`
         display: none;
         margin: 0;
     }
-    .checked + ul {
+    .opened + ul {
         display: block;
     }
 `;

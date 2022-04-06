@@ -17,14 +17,14 @@ describe('CheckboxItem', () => {
             <CheckboxItem
                 onChange={onChange}
                 label={'ProductText'}
-                isUnChecked={false}
+                isChild={false}
             />
         );
         const checkbox = wrapper.find('[type="checkbox"]');
         expect(wrapper.getElements()).toMatchSnapshot();
         expect(checkbox.props().checked).toBeFalsy();
         checkbox.simulate('change', { target: { checked: true } });
-        wrapper.setProps({ isUnChecked: true });
+        wrapper.setProps({ isChild: true });
         expect(checkbox.props().checked).toBeFalsy();
     });
 });
