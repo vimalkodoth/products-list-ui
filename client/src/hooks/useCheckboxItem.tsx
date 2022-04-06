@@ -1,22 +1,31 @@
 import { useEffect, useState } from 'react';
 
-export default function useCheckboxItem(onChange, onLabelClicked, isChecked) {
+export default function useCheckboxItem(
+    onChange,
+    onLabelClicked,
+    isChecked,
+    isOpened
+) {
     const [isItemChecked, setItemChecked] = useState(false);
-    const [isOpened, setIsOpened] = useState(false);
+    const [isItemOpened, setIsItemOpened] = useState(false);
 
     useEffect(() => {
         setItemChecked(isChecked);
     }, [isChecked]);
 
+    useEffect(() => {
+        setIsItemOpened(isOpened);
+    }, [isOpened]);
+
     const handleOnChange = () => {
         setItemChecked((state) => !state);
-        onChange(!isItemChecked, !isOpened);
+        onChange(!isItemChecked, isItemOpened);
     };
 
     const handleOnToggle = () => {
-        setIsOpened((state) => !state);
-        onLabelClicked(!isItemChecked, isOpened);
+        setIsItemOpened((state) => !state);
+        onLabelClicked(isItemChecked, !isItemOpened);
     };
 
-    return { handleOnToggle, handleOnChange, isItemChecked, isOpened };
+    return { handleOnToggle, handleOnChange, isItemChecked, isItemOpened };
 }

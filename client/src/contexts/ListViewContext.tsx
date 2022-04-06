@@ -7,19 +7,21 @@ export default function ListViewContextProvider({ children }) {
     const [state, setState] = useState(null);
     const listViewMap = useRef({});
     const onCheckboxClicked = (isChecked, isOpened, trace, filter) => {
-        listViewMap.current[trace] = !listViewMap.current[trace];
+        listViewMap.current[trace]['checked'] =
+            !listViewMap.current[trace]['checked'];
         setState({ trace, filter, isChecked, isOpened });
         listViewMap.current = toggleAllChildCheckboxes(
             listViewMap.current,
             trace,
-            isChecked
+            isChecked,
+            'checked'
         );
     };
 
-    const toggleAllChildCheckboxes = (listViewMap, trace, isChecked) => {
+    const toggleAllChildCheckboxes = (listViewMap, trace, value, param) => {
         for (let key in listViewMap) {
             if (isChild(key, trace)) {
-                listViewMap[key] = isChecked;
+                listViewMap[key][param] = value;
             }
         }
         return listViewMap;
@@ -27,6 +29,15 @@ export default function ListViewContextProvider({ children }) {
 
     const onLabelClicked = (isChecked, isOpened, trace, filter) => {
         setState({ trace, filter, isChecked, isOpened });
+        listViewMap.current[trace]['opened'] = isOpened;
+        if (!isOpened) {
+            listViewMap.current = toggleAllChildCheckboxes(
+                listViewMap.current,
+                trace,
+                false,
+                'opened'
+            );
+        }
         console.log(listViewMap.current);
     };
 

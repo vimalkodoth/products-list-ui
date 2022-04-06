@@ -7,14 +7,15 @@ const CheckboxItem = ({
     onLabelClicked,
     label,
     isChecked = false,
+    isOpened = false,
 }): JSX.Element => {
-    const { handleOnToggle, handleOnChange, isItemChecked, isOpened } =
-        useCheckboxItem(onChange, onLabelClicked, isChecked);
+    const { handleOnToggle, handleOnChange, isItemChecked, isItemOpened } =
+        useCheckboxItem(onChange, onLabelClicked, isChecked, isOpened);
     return (
         <div
             css={itemCSS}
             className={`${isItemChecked ? 'checked' : ''} ${
-                isOpened ? 'opened' : ''
+                isItemOpened ? 'opened' : ''
             }`}
         >
             <input

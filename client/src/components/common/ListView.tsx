@@ -22,8 +22,11 @@ const ListView = ({ products = [], level = 0, path = '' }): JSX.Element => {
                 const filteredProducts = filter(
                     propEq(filterLevel, productKey)
                 )(products);
-                listViewMap.current[route] =
-                    listViewMap.current[route] || false;
+                listViewMap.current[route] = listViewMap.current[route] || {};
+                listViewMap.current[route]['checked'] =
+                    listViewMap.current[route]['checked'] || false;
+                listViewMap.current[route]['opened'] =
+                    listViewMap.current[route]['opened'] || false;
                 return (
                     <div key={route} css={ListViewCSS}>
                         <CheckboxItem
@@ -44,7 +47,8 @@ const ListView = ({ products = [], level = 0, path = '' }): JSX.Element => {
                                 )
                             }
                             label={productKey}
-                            isChecked={listViewMap.current[route]}
+                            isChecked={listViewMap.current[route]['checked']}
+                            isOpened={listViewMap.current[route]['opened']}
                         />
                         <ul>
                             {
