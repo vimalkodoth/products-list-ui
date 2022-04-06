@@ -16,6 +16,37 @@ export default function ListViewContextProvider({ children }) {
             isChecked,
             'checked'
         );
+        listViewMap.current = toggleAllParentCheckboxes(
+            listViewMap.current,
+            trace,
+            isChecked
+        );
+    };
+
+    const isAllKeysChecked = (keys, isChecked, listViewMap) => {
+        return keys.every((key) => listViewMap[key]['checked'] === isChecked);
+    };
+
+    const toggleAllParentCheckboxes = (listViewMap, trace, isChecked) => {
+        const parent = trace.slice(
+            0,
+            trace.lastIndexOf('-') > 0 ? trace.lastIndexOf('-') : 0
+        );
+        if (!parent) {
+            return listViewMap;
+        }
+        const keys = Object.keys(listViewMap);
+        const keysStartsWithParent = keys.filter((key) =>
+            key.startsWith(`${parent}-`)
+        );
+        if (
+            keysStartsWithParent.length === 1 ||
+            isAllKeysChecked(keysStartsWithParent, isChecked, listViewMap)
+        ) {
+            listViewMap[parent]['checked'] = isChecked;
+        }
+        listViewMap = toggleAllParentCheckboxes(listViewMap, parent, isChecked);
+        return listViewMap;
     };
 
     const toggleAllChildCheckboxes = (listViewMap, trace, value, param) => {
@@ -38,7 +69,6 @@ export default function ListViewContextProvider({ children }) {
                 'opened'
             );
         }
-        console.log(listViewMap.current);
     };
 
     const values = {
