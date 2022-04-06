@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { isChild } from '../utils/utils';
+import { isAllKeysChecked, isChild, isSomeKeysUnChecked } from '../utils/utils';
 
 const ListViewContext = React.createContext({});
 
@@ -21,14 +21,6 @@ export default function ListViewContextProvider({ children }) {
             trace,
             isChecked
         );
-    };
-
-    const isAllKeysChecked = (keys, listViewMap) => {
-        return keys.every((key) => listViewMap[key]['checked']);
-    };
-
-    const isSomeKeysUnChecked = (keys, listViewMap) => {
-        return keys.some((key) => !listViewMap[key]['checked']);
     };
 
     const toggleAllParentCheckboxes = (listViewMap, trace, isChecked) => {
