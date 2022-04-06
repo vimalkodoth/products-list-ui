@@ -1,4 +1,4 @@
-import { useEffect, seState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function useCheckboxItem(onChange, onLabelClicked, isChecked) {
     const [isItemChecked, setItemChecked] = useState(false);
@@ -15,7 +15,7 @@ export default function useCheckboxItem(onChange, onLabelClicked, isChecked) {
 
     const handleOnToggle = () => {
         setIsOpened((state) => !state);
-        onLabelClicked(!isItemChecked, !isOpened);
+        onLabelClicked(!isItemChecked, isOpened);
     };
 
     return { handleOnToggle, handleOnChange, isItemChecked, isOpened };
