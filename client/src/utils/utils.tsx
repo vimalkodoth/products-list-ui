@@ -29,3 +29,17 @@ export const isAllKeysChecked = (keys, listViewMap) => {
 export const isSomeKeysUnChecked = (keys, listViewMap) => {
     return keys.some((key) => !listViewMap[key]['checked']);
 };
+
+/**
+ *
+ * @param regex
+ * @param str
+ * @returns {Array}
+ */
+export function getMatchIndices(regex, str) {
+    const result = [];
+    let match;
+    regex = new RegExp(regex);
+    while ((match = regex.exec(str))) result.push(match.index);
+    return result;
+}

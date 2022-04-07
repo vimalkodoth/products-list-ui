@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 
 export const ListWrapperCSS = css`
     display: flex;
+    flex-basis: 40%;
     flex-direction: column;
     max-height: 100%;
     overflow: scroll;
@@ -14,5 +15,19 @@ export const ListViewCSS = css`
     }
     .opened + ul {
         display: block;
+    }
+`;
+export const ListLabelsCSS = css`
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    ul li {
+        background: #eee;
+        padding: 7px;
+        margin: 2px;
     }
 `;

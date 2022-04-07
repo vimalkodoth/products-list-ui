@@ -7,6 +7,7 @@ export default function useListView() {
         onCheckboxClicked,
         onLabelClicked,
         listViewMap,
+        labelsViewList,
         setListViewMap,
     } = useContext(ListViewContext);
     const { trace } = state || {};
@@ -15,6 +16,7 @@ export default function useListView() {
         onCheckboxClicked,
         onLabelClicked,
         listViewMap,
+        labelsViewList,
         setListViewMap,
     };
 }

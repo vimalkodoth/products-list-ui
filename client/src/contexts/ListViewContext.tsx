@@ -1,11 +1,43 @@
 import React, { useRef, useState } from 'react';
-import { isAllKeysChecked, isChild, isSomeKeysUnChecked } from '../utils/utils';
+import {
+    getMatchIndices,
+    isAllKeysChecked,
+    isChild,
+    isSomeKeysUnChecked,
+} from '../utils/utils';
 
 const ListViewContext = React.createContext({});
 
 export default function ListViewContextProvider({ children }) {
     const [state, setState] = useState(null);
     const listViewMap = useRef({});
+    const labelsViewList = useRef([]);
+
+    const generateViewList = (listViewMap, trace = '') => {
+        let keys = Object.keys(listViewMap).filter((key) => {
+            return listViewMap[key]['checked'];
+        });
+        labelsViewList.current = [];
+        keys.sort((a, b) => a.length - b.length);
+
+        if (keys.length) {
+            for (let i = keys.length; i >= 0; i--) {
+                let l = keys.shift();
+                if (!l) break;
+                keys = keys.filter((label) => !label.startsWith(l));
+                labelsViewList.current = [...labelsViewList.current, l];
+            }
+        }
+        labelsViewList.current = labelsViewList.current.map((label) => {
+            const splits = label.split('-');
+            if (splits.length < 4) {
+                return `all ${splits[splits.length - 1]}`;
+            }
+            return `${splits[splits.length - 2]} ${splits[splits.length - 1]}`;
+        });
+        return labelsViewList.current;
+    };
+
     const onCheckboxClicked = (isChecked, isOpened, trace, filter) => {
         listViewMap.current[trace]['checked'] =
             !listViewMap.current[trace]['checked'];
@@ -21,6 +53,7 @@ export default function ListViewContextProvider({ children }) {
             trace,
             isChecked
         );
+        labelsViewList.current = generateViewList(listViewMap.current, trace);
     };
 
     const toggleAllParentCheckboxes = (listViewMap, trace, isChecked) => {
@@ -82,6 +115,7 @@ export default function ListViewContextProvider({ children }) {
         onCheckboxClicked,
         onLabelClicked,
         listViewMap: listViewMap,
+        labelsViewList,
         setListViewMap,
     };
 

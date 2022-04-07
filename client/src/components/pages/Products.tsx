@@ -2,7 +2,9 @@ import ListViewContextProvider from '../../contexts/ListViewContext';
 /** @jsxImportSource @emotion/react */
 
 import { useGetProductsQuery } from '../../services/productsApi';
+import LabelsView from '../common/LabelsView';
 import ListView from '../common/ListView';
+import { ListLabelsCSS } from '../common/ListView.styles';
 import { ProductsWrapperCSS } from './Products.styles';
 
 const Products = (): JSX.Element => {
@@ -22,6 +24,23 @@ const Products = (): JSX.Element => {
                     <div css={ProductsWrapperCSS}>
                         <h2>Category List</h2>
                         <ListView products={products} />
+                        <LabelsView>
+                            {(labelsViewList) => (
+                                <div css={ListLabelsCSS}>
+                                    {
+                                        <ul>
+                                            {labelsViewList.current.map(
+                                                (label, i) => (
+                                                    <li key={`${label}_${i}`}>
+                                                        {label}
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    }
+                                </div>
+                            )}
+                        </LabelsView>
                     </div>
                 </ListViewContextProvider>
             )}

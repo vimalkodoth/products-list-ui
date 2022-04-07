@@ -25,6 +25,14 @@
             "variant": "256gb"
         },
         {
+            "id": 31,
+            "title": "xxxx",
+            "category": "phones",
+            "brand": "apple",
+            "model": "iphone7",
+            "variant": "512gb"
+        },
+        {
             "id": 4,
             "title": "xxxx",
             "category": "computers",
