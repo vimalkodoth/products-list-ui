@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 export const ListWrapperCSS = css`
     display: flex;
     flex-basis: 40%;
+    margin-bottom: 1em;
     flex-direction: column;
     max-height: 100%;
     overflow: scroll;

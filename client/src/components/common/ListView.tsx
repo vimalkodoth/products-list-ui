@@ -6,13 +6,8 @@ import CheckboxItem from './CheckboxItem';
 import { ListLabelsCSS, ListViewCSS, ListWrapperCSS } from './ListView.styles';
 
 const ListView = ({ products = [], level = 0, path = '' }): JSX.Element => {
-    const {
-        onCheckboxClicked,
-        onLabelClicked,
-        listViewMap,
-        labelsViewList,
-        setListViewMap,
-    } = useListView();
+    const { onCheckboxClicked, onLabelClicked, listViewMap, setListViewMap } =
+        useListView();
     const filterLevel = PRODUCT_LEVELS[level++];
     const segmentByType = groupWith(eqBy(prop(filterLevel)))(products);
 
